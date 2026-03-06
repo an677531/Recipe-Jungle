@@ -40,6 +40,8 @@ as admin to manage the recipe collection.
 - Browse all recipes
 - View individual recipe detail pages
 - Save display preferences via localStorage (font size, color mode, layout)
+- Recipe browsing via search bar and sorting by categories (categories optional)
+- Button to turn recipes into easy to screen shot or copy paste format for easy saving into personal cookbooks
 
 ### Admin (login required)
 - Secure login page
