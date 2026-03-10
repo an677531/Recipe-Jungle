@@ -54,6 +54,7 @@ export default function Dashboard() {
         )}
 
         {!loading && !error && recipes.length > 0 && (
+          <div className="dashboard-page__table-wrapper">
           <table className="dashboard-page__table">
             <thead>
               <tr>
@@ -87,6 +88,7 @@ export default function Dashboard() {
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </div>
     </main>

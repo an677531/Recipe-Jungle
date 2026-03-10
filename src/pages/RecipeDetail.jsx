@@ -5,6 +5,7 @@ import FavoriteButton from '../components/FavoriteButton'
 import '../styles/RecipeDetail.css'
 
 export default function RecipeDetail() {
+  const FALLBACK_IMAGE = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwXwu9eVxqnsE0pvlBsa1em8IOUQmrykCm5w&s'
   const { id } = useParams()
   const [recipe, setRecipe] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -54,7 +55,7 @@ export default function RecipeDetail() {
 
         <div className="recipe-detail-page__hero">
           <img
-            src={recipe.image_url}
+            src={recipe.image_url || FALLBACK_IMAGE}
             alt={recipe.title}
             className="recipe-detail-page__image"
           />

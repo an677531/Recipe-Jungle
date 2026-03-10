@@ -44,6 +44,14 @@ body {
   color: var(--shadow-grey);
   line-height: 1.6;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 img, video {
@@ -87,6 +95,11 @@ h4, h5, h6, label, button, nav {
 
 @media (min-width: 1024px) {
   html { font-size: 18px; }
+}
+
+/* ─── Focus reset target ───────────────────────────────────── */
+main:focus {
+  outline: none;
 }
 
 /* ─── Font size preference ─────────────────────────────────── */

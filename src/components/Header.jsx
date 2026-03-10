@@ -18,7 +18,7 @@ export default function Header() {
     <header className="header">
       <div className="header__inner container">
         <Link to="/" className="header__logo">Recipe Jungle</Link>
-        <nav className="header__nav">
+        <nav className="header__nav" aria-label="Main navigation">
           <Link to="/" className="header__link">Home</Link>
           <Link to="/recipes" className="header__link">Recipes</Link>
           <div className="header__prefs-wrapper">

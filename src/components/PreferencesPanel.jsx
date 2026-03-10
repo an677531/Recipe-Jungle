@@ -1,8 +1,18 @@
+import { useEffect } from 'react'
 import { usePreferences } from '../context/PreferencesContext'
 import '../styles/PreferencesPanel.css'
 
 export default function PreferencesPanel({ isOpen, onClose }) {
   const { layout, setLayout, fontSize, setFontSize } = usePreferences()
+
+  useEffect(() => {
+    if (!isOpen) return
+    function handleKey(e) {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', handleKey)
+    return () => document.removeEventListener('keydown', handleKey)
+  }, [isOpen, onClose])
 
   if (!isOpen) return null
 

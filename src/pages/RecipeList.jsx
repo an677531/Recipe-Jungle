@@ -52,6 +52,12 @@ export default function RecipeList() {
           />
         </div>
 
+        <p className="recipe-list-page__sr-count" aria-live="polite" aria-atomic="true">
+          {!loading && !error && search
+            ? `${filtered.length} recipe${filtered.length !== 1 ? 's' : ''} found`
+            : ''}
+        </p>
+
         {loading && (
           <p className="recipe-list-page__status">Loading recipes…</p>
         )}

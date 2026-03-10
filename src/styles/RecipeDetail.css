@@ -186,5 +186,29 @@
 
 /* ─── Print / screenshot ────────────────────────────────────── */
 @media print {
-  .recipe-detail-page__back { display: none; }
+  .recipe-detail-page__back,
+  .favorite-btn {
+    display: none;
+  }
+
+  .recipe-detail-page {
+    padding-block: 0;
+  }
+
+  .recipe-detail-page__hero {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-detail-page__image {
+    max-height: 300px;
+    width: 100%;
+  }
+
+  .recipe-detail-page__meta {
+    background-color: #f5f5f5;
+  }
+
+  .recipe-detail-page__section--notes {
+    background-color: #f5f5f5;
+  }
 }

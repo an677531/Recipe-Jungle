@@ -3,6 +3,7 @@ import FavoriteButton from './FavoriteButton'
 import '../styles/RecipeCard.css'
 
 export default function RecipeCard({ recipe }) {
+  const FALLBACK_IMAGE = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwXwu9eVxqnsE0pvlBsa1em8IOUQmrykCm5w&s'
   const totalTime = (recipe.prep_time ?? 0) + (recipe.cook_time ?? 0)
 
   return (
@@ -10,7 +11,7 @@ export default function RecipeCard({ recipe }) {
       <Link to={`/recipes/${recipe.id}`} className="recipe-card__link">
         <div className="recipe-card__image-wrapper">
           <img
-            src={recipe.image_url}
+            src={recipe.image_url || FALLBACK_IMAGE}
             alt={recipe.title}
             className="recipe-card__image"
           />
