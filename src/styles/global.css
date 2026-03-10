@@ -88,3 +88,8 @@ h4, h5, h6, label, button, nav {
 @media (min-width: 1024px) {
   html { font-size: 18px; }
 }
+
+/* ─── Font size preference ─────────────────────────────────── */
+body[data-font-size='large'] {
+  font-size: 1.125rem;
+}

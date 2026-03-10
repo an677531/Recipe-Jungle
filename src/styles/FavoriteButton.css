@@ -1,0 +1,24 @@
+.favorite-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--shadow-grey);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.favorite-btn:hover {
+  background-color: #fff;
+  transform: scale(1.1);
+}
+
+.favorite-btn--active {
+  color: var(--tomato-jam);
+}

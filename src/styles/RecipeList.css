@@ -1,0 +1,59 @@
+.recipe-list-page {
+  padding-block: var(--space-xl);
+}
+
+/* ─── Header row ────────────────────────────────────────────── */
+.recipe-list-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.recipe-list-page__title {
+  font-family: var(--font-serif-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--shadow-grey);
+}
+
+.recipe-list-page__search {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  padding: var(--space-sm) var(--space-md);
+  border: 2px solid var(--tropical-teal);
+  border-radius: var(--radius-md);
+  background-color: #fff;
+  color: var(--shadow-grey);
+  width: 100%;
+  max-width: 320px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.recipe-list-page__search:focus {
+  border-color: var(--tomato-jam);
+}
+
+/* ─── Grid ──────────────────────────────────────────────────── */
+.recipe-list-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* ─── List layout override ──────────────────────────────────── */
+.recipe-list-page__grid--list {
+  grid-template-columns: 1fr;
+  max-width: 640px;
+}
+
+/* ─── States ────────────────────────────────────────────────── */
+.recipe-list-page__status {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  color: #6b6668;
+  text-align: center;
+  padding-block: var(--space-xl);
+}

@@ -1,0 +1,190 @@
+.recipe-detail-page {
+  padding-block: var(--space-xl);
+}
+
+.recipe-detail-page__back {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--tomato-jam);
+  margin-bottom: var(--space-lg);
+  transition: color 0.15s ease;
+}
+
+.recipe-detail-page__back:hover {
+  color: var(--shadow-grey);
+}
+
+/* ─── Hero ──────────────────────────────────────────────────── */
+.recipe-detail-page__hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .recipe-detail-page__hero {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.recipe-detail-page__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.recipe-detail-page__category {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--tomato-jam);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-sm);
+}
+
+.recipe-detail-page__title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.recipe-detail-page__title {
+  font-family: var(--font-serif-display);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  color: var(--shadow-grey);
+}
+
+.recipe-detail-page__title-row .favorite-btn {
+  background-color: var(--vanilla-custard);
+  flex-shrink: 0;
+  margin-top: var(--space-xs);
+}
+
+.recipe-detail-page__description {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--shadow-grey);
+  margin-bottom: var(--space-lg);
+}
+
+/* ─── Meta strip ────────────────────────────────────────────── */
+.recipe-detail-page__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background-color: var(--vanilla-custard);
+  border-radius: var(--radius-md);
+}
+
+.recipe-detail-page__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 64px;
+}
+
+.recipe-detail-page__meta-label {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b6668;
+}
+
+.recipe-detail-page__meta-value {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--shadow-grey);
+}
+
+/* ─── Body sections ─────────────────────────────────────────── */
+.recipe-detail-page__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.recipe-detail-page__section-title {
+  font-family: var(--font-serif-display);
+  font-size: 1.4rem;
+  color: var(--shadow-grey);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--vanilla-custard);
+}
+
+/* ─── Ingredients ───────────────────────────────────────────── */
+.recipe-detail-page__ingredients {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.recipe-detail-page__ingredient {
+  font-family: var(--font-sans);
+  font-size: 0.975rem;
+  padding-left: var(--space-md);
+  position: relative;
+}
+
+.recipe-detail-page__ingredient::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--tomato-jam);
+}
+
+/* ─── Instructions ──────────────────────────────────────────── */
+.recipe-detail-page__instructions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.recipe-detail-page__step {
+  font-family: var(--font-sans);
+  font-size: 0.975rem;
+  line-height: 1.75;
+  color: var(--shadow-grey);
+}
+
+/* ─── Notes ─────────────────────────────────────────────────── */
+.recipe-detail-page__section--notes {
+  background-color: var(--vanilla-custard);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+}
+
+.recipe-detail-page__notes {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--shadow-grey);
+}
+
+/* ─── Not found ─────────────────────────────────────────────── */
+.recipe-detail-page__not-found {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  color: #6b6668;
+  margin-bottom: var(--space-md);
+}
+
+/* ─── Print / screenshot ────────────────────────────────────── */
+@media print {
+  .recipe-detail-page__back { display: none; }
+}

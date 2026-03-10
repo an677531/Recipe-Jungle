@@ -1,0 +1,16 @@
+.footer {
+  background-color: var(--shadow-grey);
+  color: var(--linen);
+  padding-block: var(--space-md);
+  margin-top: auto;
+}
+
+.footer__inner {
+  text-align: center;
+}
+
+.footer__text {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--tropical-teal);
+}

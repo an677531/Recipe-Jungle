@@ -1,4 +1,5 @@
-import './Landing.css';
+import { Link } from 'react-router-dom'
+import '../styles/Landing.css'
 
 export default function Landing() {
   return (
@@ -10,8 +11,8 @@ export default function Landing() {
           Browse freely, save your preferences, and come back whenever hunger
           strikes.
         </p>
-        <a href="/recipes" className="landing__cta">Explore Recipes</a>
+        <Link to="/recipes" className="landing__cta">Explore Recipes</Link>
       </div>
     </main>
-  );
+  )
 }

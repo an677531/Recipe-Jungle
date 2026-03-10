@@ -13,8 +13,8 @@ as admin to manage the recipe collection.
 | Frontend    | React (Vite)                          |
 | Styling     | CSS (custom properties, mobile-first) |
 | Persistence | localStorage (visitor preferences)    |
-| Database    | TBD — backend/DB for recipe data      |
-| Auth        | Admin-only login (session or JWT)     |
+| Database    | Supabase (hosted Postgres)            |
+| Auth        | Supabase Auth (admin only)            |
 
 ## Fonts
 

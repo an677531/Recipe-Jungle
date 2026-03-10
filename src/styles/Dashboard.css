@@ -1,0 +1,112 @@
+.dashboard-page {
+  padding-block: var(--space-xl);
+}
+
+/* ─── Header ────────────────────────────────────────────────── */
+.dashboard-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.dashboard-page__title {
+  font-family: var(--font-serif-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--shadow-grey);
+}
+
+.dashboard-page__add-btn {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--tropical-teal);
+  color: var(--shadow-grey);
+  border-radius: var(--radius-md);
+  transition: background-color 0.15s ease;
+}
+
+.dashboard-page__add-btn:hover {
+  background-color: var(--vanilla-custard);
+}
+
+/* ─── Table ─────────────────────────────────────────────────── */
+.dashboard-page__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+}
+
+.dashboard-page__table th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b6668;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 2px solid var(--vanilla-custard);
+}
+
+.dashboard-page__table td {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--vanilla-custard);
+  color: var(--shadow-grey);
+  vertical-align: middle;
+}
+
+.dashboard-page__table tr:hover td {
+  background-color: #fafafa;
+}
+
+/* ─── Actions ───────────────────────────────────────────────── */
+.dashboard-page__actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.dashboard-page__edit-btn {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-md);
+  background-color: var(--tropical-teal);
+  color: var(--shadow-grey);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s ease;
+}
+
+.dashboard-page__edit-btn:hover {
+  background-color: var(--vanilla-custard);
+}
+
+.dashboard-page__delete-btn {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-md);
+  background-color: transparent;
+  color: var(--tomato-jam);
+  border: 1px solid var(--tomato-jam);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dashboard-page__delete-btn:hover {
+  background-color: var(--tomato-jam);
+  color: #fff;
+}
+
+/* ─── Status ────────────────────────────────────────────────── */
+.dashboard-page__status {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  color: #6b6668;
+  text-align: center;
+  padding-block: var(--space-xl);
+}

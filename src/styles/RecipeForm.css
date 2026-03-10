@@ -1,0 +1,180 @@
+.recipe-form-page {
+  padding-block: var(--space-xl);
+}
+
+/* ─── Header ────────────────────────────────────────────────── */
+.recipe-form-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.recipe-form-page__title {
+  font-family: var(--font-serif-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--shadow-grey);
+}
+
+.recipe-form-page__back {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--tomato-jam);
+  transition: color 0.15s ease;
+}
+
+.recipe-form-page__back:hover {
+  color: var(--shadow-grey);
+}
+
+.recipe-form-page__error {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--tomato-jam);
+  background-color: #fdf0ee;
+  border: 1px solid var(--tomato-jam);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.recipe-form-page__status {
+  font-family: var(--font-ui);
+  color: #6b6668;
+  padding-block: var(--space-xl);
+  text-align: center;
+}
+
+/* ─── Form layout ───────────────────────────────────────────── */
+.recipe-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.recipe-form__section {
+  background-color: #fff;
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: 0 2px 8px rgba(35, 31, 32, 0.06);
+}
+
+.recipe-form__section-title {
+  font-family: var(--font-serif-display);
+  font-size: 1.2rem;
+  color: var(--shadow-grey);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--vanilla-custard);
+}
+
+.recipe-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+@media (max-width: 600px) {
+  .recipe-form__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.recipe-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.recipe-form__field--full {
+  grid-column: 1 / -1;
+}
+
+/* ─── Controls ──────────────────────────────────────────────── */
+.recipe-form__label {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--shadow-grey);
+}
+
+.recipe-form__label span {
+  color: var(--tomato-jam);
+}
+
+.recipe-form__hint {
+  font-weight: 400;
+  color: #6b6668;
+}
+
+.recipe-form__input,
+.recipe-form__select,
+.recipe-form__textarea {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  padding: var(--space-sm) var(--space-md);
+  border: 2px solid var(--vanilla-custard);
+  border-radius: var(--radius-md);
+  background-color: #fff;
+  color: var(--shadow-grey);
+  outline: none;
+  transition: border-color 0.15s ease;
+  width: 100%;
+}
+
+.recipe-form__input:focus,
+.recipe-form__select:focus,
+.recipe-form__textarea:focus {
+  border-color: var(--tropical-teal);
+}
+
+.recipe-form__textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* ─── Form actions ──────────────────────────────────────────── */
+.recipe-form__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-md);
+  padding-bottom: var(--space-xl);
+}
+
+.recipe-form__cancel {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #6b6668;
+  transition: color 0.15s ease;
+}
+
+.recipe-form__cancel:hover {
+  color: var(--shadow-grey);
+}
+
+.recipe-form__submit {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: var(--space-sm) var(--space-xl);
+  background-color: var(--tomato-jam);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.recipe-form__submit:hover {
+  background-color: var(--shadow-grey);
+}
+
+.recipe-form__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

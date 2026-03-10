@@ -1,0 +1,78 @@
+.header {
+  background-color: var(--shadow-grey);
+  color: var(--linen);
+  padding-block: var(--space-sm);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.header__logo {
+  font-family: var(--font-serif-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--vanilla-custard);
+  letter-spacing: -0.01em;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.header__link {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--linen);
+  transition: color 0.15s ease;
+}
+
+.header__link:hover {
+  color: var(--tropical-teal);
+}
+
+.header__prefs-wrapper {
+  position: relative;
+}
+
+.header__prefs-btn {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--linen);
+  background: none;
+  border: 1px solid var(--tropical-teal);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-sm);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.header__prefs-btn:hover {
+  background-color: var(--tropical-teal);
+  color: var(--shadow-grey);
+}
+
+.header__logout-btn {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--linen);
+  background: none;
+  border: 1px solid var(--tomato-jam);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-sm);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.header__logout-btn:hover {
+  background-color: var(--tomato-jam);
+  color: #fff;
+}
