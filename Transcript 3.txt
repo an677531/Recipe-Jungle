@@ -1,0 +1,782 @@
+
+╭─── Claude Code v2.1.70 ──────────────────────────────────────────────────────╮
+│                                               │ Tips for getting started     │
+│             Welcome back Anthony!             │ Run /init to create a CLAUD… │
+│                                               │ ──────────────────────────── │
+│                   ▗ ▗   ▖ ▖                   │ Recent activity              │
+│                                               │ No recent activity           │
+│                     ▘▘ ▝▝                     │                              │
+│                                               │                              │
+│            Sonnet 4.6 · Claude Pro            │                              │
+│   ~/Desktop/DIG 4503C/Midterm/recipe-jungle   │                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+✻ Conversation compacted (ctrl+o for history)
+
+  ⎿  Read src/styles/global.css (179 lines)
+  ⎿  Read src/components/PreferencesPanel.jsx (96 lines)
+  ⎿  Read src/context/PreferencesContext.jsx (46 lines)
+  ⎿  Read buildplan.md (251 lines)
+  ⎿  Read src/pages/RecipeDetail.jsx (122 lines)
+
+⏺ Recalled 1 memory (ctrl+o to expand)
+
+⏺ The color mode implementation is complete. Let me check the current state of
+  the app to ensure everything looks good before the polish pass.
+
+⏺ Searched for 1 pattern, read 4 files (ctrl+o to expand)
+
+⏺ I can see an issue already: .prefs-panel has background-color: #fff hardcoded,
+   which breaks in dark/high-contrast mode. Let me read the remaining files
+  before doing the full polish pass.
+
+⏺ Read 8 files (ctrl+o to expand)
+
+⏺ I've identified all the polish issues. Here's what needs fixing:
+
+  1. #6b6668 muted text hardcoded everywhere — invisible in dark mode
+  2. PreferencesPanel.css — Color Mode row has 3 buttons but panel is only 220px
+   wide
+  3. #fafafa table row hover in Dashboard — nearly invisible in dark mode
+  4. #fdf0ee error backgrounds in Login/RecipeForm — wrong in dark mode
+
+  I'll fix all of these now in parallel.
+
+⏺ Update(src/styles/global.css)
+  ⎿  Added 3 lines
+      24    --radius-sm: 4px;
+      25    --radius-md: 8px;
+      26    --radius-lg: 16px;
+      27 +                                                               
+      28 +  /* Muted text */                                             
+      29 +  --muted: #6b6668;                                            
+      30  }
+      31  
+      32  /* ─── Reset ──────────────────────────────────────────────────
+           */
+
+⏺ Update(src/styles/global.css)
+  ⎿  Added 1 line
+      117    --vanilla-custard:#2c2c2c;
+      118    --tropical-teal:  #5aa3a8;
+      119    --tomato-jam:     #d4614a;
+      120 +  --muted:          #a09899;                                  
+      121    background-color: #1a1a1a;
+      122    color: #e8e3de;
+      123  }
+
+⏺ Update(src/styles/global.css)
+  ⎿  Added 9 lines
+      129    color: #e8e3de;
+      130  }
+      131  
+      132 +body[data-color-mode='dark'] .dashboard-page__table tr:hover t
+          +d {                                                           
+      133 +  background-color: #333333;                                  
+      134 +}                                                             
+      135 +                                                              
+      136 +body[data-color-mode='dark'] .recipe-form-page__error,        
+      137 +body[data-color-mode='dark'] .login-page__error {             
+      138 +  background-color: #3a1a17;                                  
+      139 +}                                                             
+      140 +                                                              
+      141  body[data-color-mode='dark'] .recipe-form__input,
+      142  body[data-color-mode='dark'] .recipe-form__select,
+      143  body[data-color-mode='dark'] .recipe-form__textarea,
+
+⏺ Update(src/styles/global.css)
+  ⎿  Added 1 line
+      165    --vanilla-custard:#ffff00;
+      166    --tropical-teal:  #0000ff;
+      167    --tomato-jam:     #cc0000;
+      168 +  --muted:          #000000;                                  
+      169    background-color: #ffffff;
+      170    color: #000000;
+      171  }
+
+⏺ Now replace all #6b6668 instances with var(--muted) across the CSS files:
+
+⏺ Update(src/styles/RecipeCard.css)
+  ⎿  Added 1 line, removed 1 line
+      84  .recipe-card__time {
+      85    font-family: var(--font-ui);
+      86    font-size: 0.85rem;
+      87 -  color: #6b6668;                                              
+      87 +  color: var(--muted);                                         
+      88  }
+
+⏺ Update(src/styles/RecipeList.css)
+  ⎿  Added 1 line, removed 1 line
+      66  .recipe-list-page__status {
+      67    font-family: var(--font-ui);
+      68    font-size: 1rem;
+      69 -  color: #6b6668;                                              
+      69 +  color: var(--muted);                                         
+      70    text-align: center;
+      71    padding-block: var(--space-xl);
+      72  }
+
+⏺ Update(src/styles/RecipeDetail.css)
+  ⎿  Added 2 lines, removed 2 lines
+      100    font-weight: 600;
+      101    text-transform: uppercase;
+      102    letter-spacing: 0.06em;
+      103 -  color: #6b6668;                                             
+      103 +  color: var(--muted);                                        
+      104  }
+      105  
+      106  .recipe-detail-page__meta-value {
+     ...
+      180  .recipe-detail-page__not-found {
+      181    font-family: var(--font-ui);
+      182    font-size: 1rem;
+      183 -  color: #6b6668;                                             
+      183 +  color: var(--muted);                                        
+      184    margin-bottom: var(--space-md);
+      185  }
+      186  
+
+⏺ Update(src/styles/RecipeForm.css)
+  ⎿  Added 3 lines, removed 3 lines
+      43  
+      44  .recipe-form-page__status {
+      45    font-family: var(--font-ui);
+      46 -  color: #6b6668;                                              
+      46 +  color: var(--muted);                                         
+      47    padding-block: var(--space-xl);
+      48    text-align: center;
+      49  }
+     ...
+      107  
+      108  .recipe-form__hint {
+      109    font-weight: 400;
+      110 -  color: #6b6668;                                             
+      110 +  color: var(--muted);                                        
+      111  }
+      112  
+      113  .recipe-form__input,
+     ...
+      149    font-family: var(--font-ui);
+      150    font-size: 0.95rem;
+      151    font-weight: 500;
+      152 -  color: #6b6668;                                             
+      152 +  color: var(--muted);                                        
+      153    transition: color 0.15s ease;
+      154  }
+      155  
+
+⏺ Update(src/styles/Dashboard.css)
+  ⎿  Added 2 lines, removed 2 lines
+      54    font-size: 0.8rem;
+      55    text-transform: uppercase;
+      56    letter-spacing: 0.05em;
+      57 -  color: #6b6668;                                              
+      57 +  color: var(--muted);                                         
+      58    padding: var(--space-sm) var(--space-md);
+      59    border-bottom: 2px solid var(--vanilla-custard);
+      60  }
+     ...
+      113  .dashboard-page__status {
+      114    font-family: var(--font-ui);
+      115    font-size: 1rem;
+      116 -  color: #6b6668;                                             
+      116 +  color: var(--muted);                                        
+      117    text-align: center;
+      118    padding-block: var(--space-xl);
+      119  }
+
+⏺ Now fix the PreferencesPanel — wrap the row and widen the panel:
+
+⏺ Update(src/styles/PreferencesPanel.css)
+  ⎿  Added 1 line, removed 1 line
+       7    border-radius: var(--radius-md);
+       8    box-shadow: 0 8px 24px rgba(35, 31, 32, 0.12);
+       9    z-index: 100;
+      10 -  min-width: 220px;                                            
+      10 +  min-width: 260px;                                            
+      11  }
+      12  
+      13  .prefs-panel__inner {
+
+⏺ Update(src/styles/PreferencesPanel.css)
+  ⎿  Added 2 lines, removed 1 line
+      21    display: flex;
+      22    align-items: center;
+      23    justify-content: space-between;
+      24 -  gap: var(--space-md);                                        
+      24 +  flex-wrap: wrap;                                             
+      25 +  gap: var(--space-sm);                                        
+      26  }
+      27  
+      28  .prefs-panel__label {
+
+⏺ Also allow the options themselves to wrap when needed:
+
+⏺ Update(src/styles/PreferencesPanel.css)
+  ⎿  Added 1 line
+      34  
+      35  .prefs-panel__options {
+      36    display: flex;
+      37 +  flex-wrap: wrap;                                             
+      38    gap: var(--space-xs);
+      39  }
+      40  
+
+⏺ Now let me do a final grep to confirm no stray #6b6668 remain in the styles:
+
+⏺ Searched for 2 patterns (ctrl+o to expand)
+
+⏺ That's correct — it's only the token definition itself. All the usages across
+  component CSS files now reference var(--muted).
+
+  Let me also verify no other hardcoded colors that should adapt are lurking:
+
+⏺ Searched for 1 pattern (ctrl+o to expand)
+
+⏺ All those white backgrounds are already covered by the dark mode overrides in
+  global.css. Let me do a quick sanity check to confirm the full dark mode
+  override block is complete:
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ Everything looks solid. Here's a summary of what was done in this polish pass:
+
+  Color token — --muted
+  - Added --muted: #6b6668 to :root
+  - Overridden to #a09899 (lighter) in dark mode
+  - Overridden to #000000 (pure black) in high contrast
+  - Replaced all 8 hardcoded #6b6668 instances across RecipeCard.css,
+  RecipeList.css, RecipeDetail.css, RecipeForm.css, and Dashboard.css with
+  var(--muted) — these will now adapt automatically to the active color mode
+
+  Dark mode additions in global.css
+  - Table row hover (#fafafa → #333333 in dark)
+  - Error message backgrounds (#fdf0ee → #3a1a17 in dark)
+
+  PreferencesPanel layout
+  - Panel widened from 220px to 260px to accommodate the 3-button Color Mode row
+  - Added flex-wrap: wrap to both .prefs-panel__row and .prefs-panel__options so
+   buttons wrap gracefully on narrow viewports
+
+  The app is ready for you to test all three color modes end to end.
+
+✻ Cooked for 5m 19s
+
+❯ lets run localhost test 
+
+⏺ Bash(cd "/Users/tony/Desktop/DIG 4503C/Midterm/recipe-jungle" && npm run dev
+      2>&1 &)
+  ⎿  Running in the background (↓ to manage)
+
+⏺ Bash(sleep 3 && cat /private/tmp/claude-501/-Users-tony-Desktop-DIG-4503C-Midt
+      erm-recipe-jungle/tasks/bvq8yr6ya.output)
+  ⎿  > recipe-jungle@0.0.0 dev
+     > vite
+     … +5 lines (ctrl+o to expand)
+
+⏺ Server is up at http://localhost:5173/. Open that in your browser and test:
+
+  - Light mode — default, should look normal
+  - Dark mode — header Display button → Dark → all backgrounds, text, and inputs
+   should adapt
+  - High Contrast — white bg, black text, yellow accents, strong blue focus
+  rings
+  - Preferences persistence — refresh the page and confirm the mode is
+  remembered
+
+⏺ Background command "Start Vite dev server in background" completed (exit code
+0)
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ The server started and exited cleanly (it was a background process that
+  finished after printing the URL). Run it directly in your terminal to keep it
+  alive:
+
+  cd "/Users/tony/Desktop/DIG 4503C/Midterm/recipe-jungle" && npm run dev
+
+  Then visit http://localhost:5173/ while it's running.
+
+❯ great it works as intended so far. lets add additional feature which lets 
+   user view recipes based on quisine type/region or show only liked        
+  recipes based on the recipes with heart selected                          
+
+⏺ Read 2 files (ctrl+o to expand)
+
+⏺ I have everything I need. Here's the plan:
+  - Add cuisine filter state (dynamic — derived from actual recipe data)
+  - Add favoritesOnly toggle state
+  - New filter bar row below search with cuisine pills + favorites toggle
+  - Update filter logic to combine all three (search + cuisine + favorites)
+
+⏺ Update(src/pages/RecipeList.jsx)
+  ⎿  Added 53 lines, removed 5 lines
+       1 -import { useState, useEffect } from 'react'                    
+       1 +import { useState, useEffect, useMemo } from 'react'           
+       2  import RecipeCard from '../components/RecipeCard'
+       3  import { supabase } from '../lib/supabase'
+       4  import { usePreferences } from '../context/PreferencesContext'
+       5 +import { useFavorites } from '../context/FavoritesContext'     
+       6  import '../styles/RecipeList.css'
+       7  
+       8  export default function RecipeList() {
+       9    const [recipes, setRecipes] = useState([])
+      10    const [search, setSearch] = useState('')
+      11 +  const [cuisine, setCuisine] = useState('')                   
+      12 +  const [favoritesOnly, setFavoritesOnly] = useState(false)    
+      13    const [loading, setLoading] = useState(true)
+      14    const [error, setError] = useState('')
+      15    const { layout } = usePreferences()
+      16 +  const { isFavorited } = useFavorites()                       
+      17  
+      18    useEffect(() => {
+      19      async function fetchRecipes() {
+     ...
+      33      fetchRecipes()
+      34    }, [])
+      35  
+      36 +  const cuisines = useMemo(() => {                             
+      37 +    const unique = [...new Set(recipes.map(r => r.category).fil
+         +ter(Boolean))]                                                 
+      38 +    return unique.sort()                                       
+      39 +  }, [recipes])                                                
+      40 +                                                               
+      41    const filtered = recipes.filter(recipe => {
+      42      const term = search.toLowerCase()
+      34 -    return (                                                   
+      43 +    const matchesSearch =                                      
+      44        recipe.title.toLowerCase().includes(term) ||
+      45        recipe.description.toLowerCase().includes(term)
+      37 -    )                                                          
+      46 +    const matchesCuisine = cuisine === '' || recipe.category ==
+         += cuisine                                                      
+      47 +    const matchesFavorites = !favoritesOnly || isFavorited(reci
+         +pe.id)                                                         
+      48 +    return matchesSearch && matchesCuisine && matchesFavorites 
+      49    })
+      50  
+      51 +  const hasActiveFilters = search !== '' || cuisine !== '' || f
+         +avoritesOnly                                                   
+      52 +                                                               
+      53    return (
+      54      <main className="recipe-list-page">
+      55        <div className="container">
+     ...
+       65            />
+       66          </div>
+       67  
+       68 +        {!loading && !error && (                              
+       69 +          <div className="recipe-list-page__filters">         
+       70 +            <div className="recipe-list-page__cuisine-pills"> 
+       71 +              <button                                         
+       72 +                className={`recipe-list-page__pill ${cuisine =
+          +== '' ? 'recipe-list-page__pill--active' : ''}`}              
+       73 +                onClick={() => setCuisine('')}                
+       74 +                aria-pressed={cuisine === ''}                 
+       75 +              >                                               
+       76 +                All                                           
+       77 +              </button>                                       
+       78 +              {cuisines.map(c => (                            
+       79 +                <button                                       
+       80 +                  key={c}                                     
+       81 +                  className={`recipe-list-page__pill ${cuisine
+          + === c ? 'recipe-list-page__pill--active' : ''}`}             
+       82 +                  onClick={() => setCuisine(c)}               
+       83 +                  aria-pressed={cuisine === c}                
+       84 +                >                                             
+       85 +                  {c}                                         
+       86 +                </button>                                     
+       87 +              ))}                                             
+       88 +            </div>                                            
+       89 +            <button                                           
+       90 +              className={`recipe-list-page__favorites-btn ${fa
+          +voritesOnly ? 'recipe-list-page__favorites-btn--active' : ''}`
+          +}                                                             
+       91 +              onClick={() => setFavoritesOnly(v => !v)}       
+       92 +              aria-pressed={favoritesOnly}                    
+       93 +            >                                                 
+       94 +              ♥ Saved                                         
+       95 +            </button>                                         
+       96 +          </div>                                              
+       97 +        )}                                                    
+       98 +                                                              
+       99          <p className="recipe-list-page__sr-count" aria-live="p
+           olite" aria-atomic="true">
+       56 -          {!loading && !error && search                       
+      100 +          {!loading && !error && hasActiveFilters             
+      101              ? `${filtered.length} recipe${filtered.length !== 
+           1 ? 's' : ''} found`
+      102              : ''}
+      103          </p>
+     ...
+      111          )}
+      112  
+      113          {!loading && !error && filtered.length === 0 && (
+       70 -          <p className="recipe-list-page__status">No recipes m
+          -atch your search.</p>                                         
+      114 +          <p className="recipe-list-page__status">            
+      115 +            {favoritesOnly && filtered.length === 0           
+      116 +              ? 'No saved recipes yet. Heart a recipe to save 
+          +it here.'                                                     
+      117 +              : 'No recipes match your filters.'}             
+      118 +          </p>                                                
+      119          )}
+      120  
+      121          {!loading && !error && filtered.length > 0 && (
+
+⏺ Now add the styles for the filter bar:
+
+⏺ Update(src/styles/RecipeList.css)
+  ⎿  Added 65 lines
+       36    border-color: var(--tomato-jam);
+       37  }
+       38  
+       39 +/* ─── Filter bar ────────────────────────────────────────────
+          +── */                                                         
+       40 +.recipe-list-page__filters {                                  
+       41 +  display: flex;                                              
+       42 +  align-items: center;                                        
+       43 +  flex-wrap: wrap;                                            
+       44 +  gap: var(--space-sm);                                       
+       45 +  margin-bottom: var(--space-lg);                             
+       46 +}                                                             
+       47 +                                                              
+       48 +.recipe-list-page__cuisine-pills {                            
+       49 +  display: flex;                                              
+       50 +  flex-wrap: wrap;                                            
+       51 +  gap: var(--space-xs);                                       
+       52 +  flex: 1;                                                    
+       53 +}                                                             
+       54 +                                                              
+       55 +.recipe-list-page__pill {                                     
+       56 +  font-family: var(--font-ui);                                
+       57 +  font-size: 0.825rem;                                        
+       58 +  font-weight: 500;                                           
+       59 +  padding: var(--space-xs) var(--space-sm);                   
+       60 +  border: 1px solid var(--tropical-teal);                     
+       61 +  border-radius: 999px;                                       
+       62 +  background-color: transparent;                              
+       63 +  color: var(--shadow-grey);                                  
+       64 +  cursor: pointer;                                            
+       65 +  transition: background-color 0.15s ease, color 0.15s ease;  
+       66 +  white-space: nowrap;                                        
+       67 +}                                                             
+       68 +                                                              
+       69 +.recipe-list-page__pill:hover {                               
+       70 +  background-color: var(--vanilla-custard);                   
+       71 +}                                                             
+       72 +                                                              
+       73 +.recipe-list-page__pill--active {                             
+       74 +  background-color: var(--tropical-teal);                     
+       75 +  color: var(--shadow-grey);                                  
+       76 +  border-color: var(--tropical-teal);                         
+       77 +  font-weight: 600;                                           
+       78 +}                                                             
+       79 +                                                              
+       80 +.recipe-list-page__favorites-btn {                            
+       81 +  font-family: var(--font-ui);                                
+       82 +  font-size: 0.825rem;                                        
+       83 +  font-weight: 500;                                           
+       84 +  padding: var(--space-xs) var(--space-sm);                   
+       85 +  border: 1px solid var(--tomato-jam);                        
+       86 +  border-radius: 999px;                                       
+       87 +  background-color: transparent;                              
+       88 +  color: var(--tomato-jam);                                   
+       89 +  cursor: pointer;                                            
+       90 +  transition: background-color 0.15s ease, color 0.15s ease;  
+       91 +  white-space: nowrap;                                        
+       92 +}                                                             
+       93 +                                                              
+       94 +.recipe-list-page__favorites-btn:hover {                      
+       95 +  background-color: var(--vanilla-custard);                   
+       96 +}                                                             
+       97 +                                                              
+       98 +.recipe-list-page__favorites-btn--active {                    
+       99 +  background-color: var(--tomato-jam);                        
+      100 +  color: #fff;                                                
+      101 +  font-weight: 600;                                           
+      102 +}                                                             
+      103 +                                                              
+      104  /* ─── Grid ──────────────────────────────────────────────────
+           ── */
+      105  .recipe-list-page__grid {
+      106    display: grid;
+
+⏺ Now add dark mode overrides for the new elements in global.css:
+
+⏺ Update(src/styles/global.css)
+  ⎿  Added 5 lines
+      158    color: #e8e3de;
+      159  }
+      160  
+      161 +body[data-color-mode='dark'] .recipe-list-page__pill,         
+      162 +body[data-color-mode='dark'] .recipe-list-page__favorites-btn 
+          +{                                                             
+      163 +  color: #e8e3de;                                             
+      164 +}                                                             
+      165 +                                                              
+      166  /* ─── High contrast mode ────────────────────────────────────
+           ── */
+      167  body[data-color-mode='high-contrast'] {
+      168    --linen:          #ffffff;
+
+⏺ Let me verify the final RecipeList.jsx looks correct:
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ Good. Start the server and test:
+
+  cd "/Users/tony/Desktop/DIG 4503C/Midterm/recipe-jungle" && npm run dev
+
+  Here's what was added:
+
+  Cuisine filter — pill buttons auto-generated from the actual category values
+  in your database (sorted alphabetically). Clicking one narrows the grid to
+  that cuisine. "All" resets it. No hardcoded category list — new cuisines
+  appear automatically as you add recipes.
+
+  Saved filter — "♥ Saved" button on the right end of the filter bar. Activating
+   it shows only recipes you've hearted. If you have none saved yet, it shows a
+  helpful message instead of a blank grid.
+
+  Combined — all three filters (search + cuisine + Saved) work together
+  simultaneously. The aria-live count now fires whenever any filter is active.
+
+✻ Churned for 60s
+
+❯ great make sure you retroactively update the buildplan and readme to      
+  reflect these changes for the documentration's sake                       
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ Write(README.md)
+  ⎿  Added 43 lines, removed 12 lines
+      12  |-------------|---------------------------------------|
+      13  | Frontend    | React (Vite)                          |
+      14  | Styling     | CSS (custom properties, mobile-first) |
+      15 -| Persistence | localStorage (visitor preferences)    |        
+      15 +| Persistence | localStorage (visitor preferences + favorites) 
+         +|                                                              
+      16  | Database    | Supabase (hosted Postgres)            |
+      17  | Auth        | Supabase Auth (admin only)            |
+      18  
+     ...
+      37  ## Features
+      38  
+      39  ### Public (no login required)
+      40 -- Browse all recipes                                           
+      40 +- Browse all recipes in grid or list layout                    
+      41 +- Filter recipes by cuisine type — pills auto-generated from th
+         +e recipe collection                                            
+      42 +- Filter to show only saved (hearted) recipes                  
+      43 +- Keyword search — live filters by title or description        
+      44 +- All three filters (search, cuisine, saved) work simultaneousl
+         +y                                                              
+      45 +- Heart / save any recipe to localStorage — persists across ses
+         +sions                                                          
+      46  - View individual recipe detail pages
+      42 -- Save display preferences via localStorage (font size, color m
+         -ode, layout)                                                   
+      43 -- Recipe browsing via search bar and sorting by categories (cat
+         -egories optional)                                              
+      44 -- Button to turn recipes into easy to screen shot or copy paste
+         - format for easy saving into personal cookbooks                
+      47 +- Print-friendly recipe detail view                            
+      48 +- Display preferences via localStorage — layout, font size, col
+         +or mode (Light / Dark / High Contrast)                         
+      49  
+      50  ### Admin (login required)
+      51  - Secure login page
+      48 -- Add new recipes                                              
+      52 +- Add new recipes (all schema fields)                          
+      53  - Edit existing recipes
+      50 -- Delete recipes                                               
+      54 +- Delete recipes (with confirmation)                           
+      55  - Protected routes — redirects unauthenticated users
+      56  
+      57  ---
+     ...
+      60  
+      61  ```
+      62  src/
+      59 -├── components/       # Reusable UI components                 
+      60 -├── pages/            # Route-level page components            
+      61 -│   └── Landing.jsx   # Landing page                           
+      62 -├── styles/                                                    
+      63 -│   └── global.css    # Fonts, color tokens, responsive base   
+      63 +├── components/         # Reusable UI components               
+      64 +│   ├── Header.jsx                                             
+      65 +│   ├── Footer.jsx                                             
+      66 +│   ├── Layout.jsx                                             
+      67 +│   ├── RecipeCard.jsx                                         
+      68 +│   ├── RecipeForm.jsx                                         
+      69 +│   ├── FavoriteButton.jsx                                     
+      70 +│   ├── PreferencesPanel.jsx                                   
+      71 +│   └── ProtectedRoute.jsx                                     
+      72 +├── context/            # React context providers              
+      73 +│   ├── AuthContext.jsx                                        
+      74 +│   ├── FavoritesContext.jsx                                   
+      75 +│   └── PreferencesContext.jsx                                 
+      76 +├── hooks/                                                     
+      77 +│   └── useFocusReset.js                                       
+      78 +├── lib/                                                       
+      79 +│   └── supabase.js                                            
+      80 +├── pages/              # Route-level page components          
+      81 +│   ├── Landing.jsx                                            
+      82 +│   ├── RecipeList.jsx                                         
+      83 +│   ├── RecipeDetail.jsx                                       
+      84 +│   ├── Dashboard.jsx                                          
+      85 +│   └── Login.jsx                                              
+      86 +├── styles/             # All CSS files                        
+      87 +│   └── global.css      # Color tokens, fonts, responsive base,
+         + color modes                                                   
+      88  ├── App.jsx
+      89  └── main.jsx
+      90  ```
+     ...
+       98  npm install
+       99  npm run dev
+      100  ```
+      101 +                                                              
+      102 +Create a `.env` file with your Supabase credentials before run
+          +ning:                                                         
+      103 +                                                              
+      104 +```                                                           
+      105 +VITE_SUPABASE_URL=your_supabase_url                           
+      106 +VITE_SUPABASE_ANON_KEY=your_supabase_anon_key                 
+      107 +```                                                           
+
+⏺ Now update buildplan.md:
+
+⏺ Update(buildplan.md)
+  ⎿  Added 8 lines, removed 7 lines
+      10  | #  | Phase                          | Status      |
+      11  |----|--------------------------------|-------------|
+      12  | 1  | Kickoff & Setup                | ✅ Complete |
+      13 -| 2  | Backend Setup (Supabase)       | ⬜ Next     |          
+      14 -| 3  | Routing & Layout Shell         | ⬜ Pending  |          
+      15 -| 4  | Recipe Display (Mock Data)     | ⬜ Pending  |          
+      16 -| 5  | Visitor Preferences            | ⬜ Pending  |          
+      17 -| 6  | Authentication (Supabase Auth) | ⬜ Pending  |          
+      18 -| 7  | Recipe CRUD + Database         | ⬜ Pending  |          
+      19 -| 8  | Polish & Accessibility         | ⬜ Pending  |          
+      13 +| 2  | Backend Setup (Supabase)       | ✅ Complete |          
+      14 +| 3  | Routing & Layout Shell         | ✅ Complete |          
+      15 +| 4  | Recipe Display (Mock Data)     | ✅ Complete |          
+      16 +| 5  | Visitor Preferences            | ✅ Complete |          
+      17 +| 6  | Authentication (Supabase Auth) | ✅ Complete |          
+      18 +| 7  | Recipe CRUD + Database         | ✅ Complete |          
+      19 +| 8  | Polish & Accessibility         | ✅ Complete |          
+      20 +| 9  | Filtering — Cuisine & Saved    | ✅ Complete |          
+      21  
+      22  ---
+      23  
+
+⏺ Update(buildplan.md)
+  ⎿  Added 24 lines, removed 3 lines
+      240  
+      241  ---
+      242  
+      243 +---                                                           
+      244 +                                                              
+      245 +## Phase 9 — Filtering: Cuisine & Saved Recipes ✅            
+      246 +                                                              
+      247 +> **Goal:** Let visitors narrow the recipe list without a full
+          + search.                                                      
+      248 +                                                              
+      249 +### Features added                                            
+      250 +- [x] Cuisine pill buttons — auto-generated from unique `categ
+          +ory` values in the database; no hardcoded list                
+      251 +- [x] "♥ Saved" toggle button — shows only favorited recipes; 
+          +friendly empty state if none saved                            
+      252 +- [x] All three filters (keyword search + cuisine + saved) com
+          +pose simultaneously                                           
+      253 +- [x] `aria-pressed` on all filter buttons for accessibility  
+      254 +- [x] `aria-live` count fires whenever any filter is active   
+      255 +- [x] Dark mode color overrides added for new pill/button elem
+          +ents                                                          
+      256 +                                                              
+      257 +### Files changed                                             
+      258 +- `src/pages/RecipeList.jsx` — added `cuisine`, `favoritesOnly
+          +` state; `useMemo` cuisines list; updated filter logic; added 
+          +filter bar JSX                                                
+      259 +- `src/styles/RecipeList.css` — added `.recipe-list-page__filt
+          +ers`, `.recipe-list-page__cuisine-pills`, `.recipe-list-page__
+          +pill`, `.recipe-list-page__favorites-btn` styles              
+      260 +- `src/styles/global.css` — added dark mode overrides for pill
+          + and favorites button text color                              
+      261 +                                                              
+      262 +---                                                           
+      263 +                                                              
+      264  ## Notes for Next Session
+      265  
+      266  ```
+      246 -Current phase:  Phase 2 — Backend Setup (Supabase)            
+      247 -Next step:      Create Supabase project, add .env credentials,
+          - install @supabase/supabase-js, create recipes table with RLS 
+      248 -Blocker:        None — Supabase is the confirmed backend choic
+          -e                                                             
+      267 +Current phase:  All phases complete                           
+      268 +Next step:      Production smoke test (Step 35) — verify live 
+          +Vercel deployment end to end                                  
+      269 +Blocker:        None                                          
+      270  Node version:   v18.20.8 (Vite pinned to v5 — upgrade to Node 
+           v20 when possible)
+      271  Priority:       Working features over advanced architecture
+      272  ```
+
+⏺ Both files are updated:
+
+  README.md
+  - Features section rewritten to accurately describe what's actually built —
+  cuisine filter, saved filter, combined filtering, favorites persistence,
+  dark/high contrast modes
+  - Project structure expanded to show the full src/ tree as it exists now
+  - Added .env setup note to Getting Started
+
+  buildplan.md
+  - All phases 1–8 marked ✅ Complete
+  - New Phase 9 added with goal, checklist, and files changed
+  - Notes for Next Session updated — next action is the production smoke test on
+   Vercel
+
+✻ Churned for 44s
+
+❯ good idea, lets begin by pushing the new change to github 
+
+⏺ Bash(cd "/Users/tony/Desktop/DIG 4503C/Midterm/recipe-jungle" && git status)
+  ⎿  On branch main
+     Your branch is up to date with 'origin/main'.
+     … +22 lines (ctrl+o to expand)
+
+⏺ Bash(cd "/Users/tony/Desktop/DIG 4503C/Midterm/recipe-jungle" && git diff
+      --stat)
+  ⎿   README.md                           | 55 ++++++++++++++++++-----
+      buildplan.md                        | 44 +++++++++++++-----
+      src/components/PreferencesPanel.jsx | 29 +++++++++++-
+     … +11 lines (ctrl+o to expand)
+
+⏺ Bash(cd "/Users/tony/Desktop/DIG 4503C/Midterm/recipe-jungle" && git add
+      README.md buildplan.md src/components/PreferencesPanel.jsx
+      src/context/PreferencesContext.js…)
+  ⎿  (No output)
+
+⏺ Bash(cd "/Users/tony/Desktop/DIG 4503C/Midterm/recipe-jungle" && git commit -m
+       "$(cat <<'EOF'
+      Add dark mode, high contrast, cuisine filter, and saved recipes filter…)
+  ⎿  [main 382e98a] Add dark mode, high contrast, cuisine filter, and saved
+      recipes filter
+      12 files changed, 335 insertions(+), 42 deletions(-)
+
+⏺ Bash(cd "/Users/tony/Desktop/DIG 4503C/Midterm/recipe-jungle" && git push
+      origin main)
+  ⎿  To https://github.com/an677531/Recipe-Jungle.git
+        6eeb6e8..382e98a  main -> main
+
+⏺ Pushed. Commit 382e98a is live on GitHub with all 12 files — dark/high
+  contrast mode, the cuisine + saved filters, the --muted token cleanup, and the
+   updated docs.
+
+  If you have Vercel connected to this repo it will auto-deploy now.
+
+✻ Sautéed for 37s
