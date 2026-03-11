@@ -30,3 +30,8 @@ pnpm-debug.log*
 .idea/
 *.suo
 *.sw?
+
+# Transcript files
+Exercise transcript copy.txt
+Transcript 2.txt
+Transcript 3.txt
