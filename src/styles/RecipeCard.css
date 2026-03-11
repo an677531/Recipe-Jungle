@@ -84,5 +84,5 @@
 .recipe-card__time {
   font-family: var(--font-ui);
   font-size: 0.85rem;
-  color: #6b6668;
+  color: var(--muted);
 }

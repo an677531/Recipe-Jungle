@@ -3,7 +3,7 @@ import { usePreferences } from '../context/PreferencesContext'
 import '../styles/PreferencesPanel.css'
 
 export default function PreferencesPanel({ isOpen, onClose }) {
-  const { layout, setLayout, fontSize, setFontSize } = usePreferences()
+  const { layout, setLayout, fontSize, setFontSize, colorMode, setColorMode } = usePreferences()
 
   useEffect(() => {
     if (!isOpen) return
@@ -55,6 +55,33 @@ export default function PreferencesPanel({ isOpen, onClose }) {
               aria-pressed={fontSize === 'large'}
             >
               Large
+            </button>
+          </div>
+        </div>
+
+        <div className="prefs-panel__row">
+          <span className="prefs-panel__label">Color mode</span>
+          <div className="prefs-panel__options">
+            <button
+              className={`prefs-panel__btn ${colorMode === 'light' ? 'prefs-panel__btn--active' : ''}`}
+              onClick={() => setColorMode('light')}
+              aria-pressed={colorMode === 'light'}
+            >
+              Light
+            </button>
+            <button
+              className={`prefs-panel__btn ${colorMode === 'dark' ? 'prefs-panel__btn--active' : ''}`}
+              onClick={() => setColorMode('dark')}
+              aria-pressed={colorMode === 'dark'}
+            >
+              Dark
+            </button>
+            <button
+              className={`prefs-panel__btn ${colorMode === 'high-contrast' ? 'prefs-panel__btn--active' : ''}`}
+              onClick={() => setColorMode('high-contrast')}
+              aria-pressed={colorMode === 'high-contrast'}
+            >
+              High Contrast
             </button>
           </div>
         </div>

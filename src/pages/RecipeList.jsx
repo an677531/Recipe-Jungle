@@ -1,15 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import RecipeCard from '../components/RecipeCard'
 import { supabase } from '../lib/supabase'
 import { usePreferences } from '../context/PreferencesContext'
+import { useFavorites } from '../context/FavoritesContext'
 import '../styles/RecipeList.css'
 
 export default function RecipeList() {
   const [recipes, setRecipes] = useState([])
   const [search, setSearch] = useState('')
+  const [cuisine, setCuisine] = useState('')
+  const [favoritesOnly, setFavoritesOnly] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const { layout } = usePreferences()
+  const { isFavorited } = useFavorites()
 
   useEffect(() => {
     async function fetchRecipes() {
@@ -29,13 +33,22 @@ export default function RecipeList() {
     fetchRecipes()
   }, [])
 
+  const cuisines = useMemo(() => {
+    const unique = [...new Set(recipes.map(r => r.category).filter(Boolean))]
+    return unique.sort()
+  }, [recipes])
+
   const filtered = recipes.filter(recipe => {
     const term = search.toLowerCase()
-    return (
+    const matchesSearch =
       recipe.title.toLowerCase().includes(term) ||
       recipe.description.toLowerCase().includes(term)
-    )
+    const matchesCuisine = cuisine === '' || recipe.category === cuisine
+    const matchesFavorites = !favoritesOnly || isFavorited(recipe.id)
+    return matchesSearch && matchesCuisine && matchesFavorites
   })
+
+  const hasActiveFilters = search !== '' || cuisine !== '' || favoritesOnly
 
   return (
     <main className="recipe-list-page">
@@ -52,8 +65,39 @@ export default function RecipeList() {
           />
         </div>
 
+        {!loading && !error && (
+          <div className="recipe-list-page__filters">
+            <div className="recipe-list-page__cuisine-pills">
+              <button
+                className={`recipe-list-page__pill ${cuisine === '' ? 'recipe-list-page__pill--active' : ''}`}
+                onClick={() => setCuisine('')}
+                aria-pressed={cuisine === ''}
+              >
+                All
+              </button>
+              {cuisines.map(c => (
+                <button
+                  key={c}
+                  className={`recipe-list-page__pill ${cuisine === c ? 'recipe-list-page__pill--active' : ''}`}
+                  onClick={() => setCuisine(c)}
+                  aria-pressed={cuisine === c}
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+            <button
+              className={`recipe-list-page__favorites-btn ${favoritesOnly ? 'recipe-list-page__favorites-btn--active' : ''}`}
+              onClick={() => setFavoritesOnly(v => !v)}
+              aria-pressed={favoritesOnly}
+            >
+              ♥ Saved
+            </button>
+          </div>
+        )}
+
         <p className="recipe-list-page__sr-count" aria-live="polite" aria-atomic="true">
-          {!loading && !error && search
+          {!loading && !error && hasActiveFilters
             ? `${filtered.length} recipe${filtered.length !== 1 ? 's' : ''} found`
             : ''}
         </p>
@@ -67,7 +111,11 @@ export default function RecipeList() {
         )}
 
         {!loading && !error && filtered.length === 0 && (
-          <p className="recipe-list-page__status">No recipes match your search.</p>
+          <p className="recipe-list-page__status">
+            {favoritesOnly && filtered.length === 0
+              ? 'No saved recipes yet. Heart a recipe to save it here.'
+              : 'No recipes match your filters.'}
+          </p>
         )}
 
         {!loading && !error && filtered.length > 0 && (

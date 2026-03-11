@@ -43,7 +43,7 @@
 
 .recipe-form-page__status {
   font-family: var(--font-ui);
-  color: #6b6668;
+  color: var(--muted);
   padding-block: var(--space-xl);
   text-align: center;
 }
@@ -107,7 +107,7 @@
 
 .recipe-form__hint {
   font-weight: 400;
-  color: #6b6668;
+  color: var(--muted);
 }
 
 .recipe-form__input,
@@ -149,7 +149,7 @@
   font-family: var(--font-ui);
   font-size: 0.95rem;
   font-weight: 500;
-  color: #6b6668;
+  color: var(--muted);
   transition: color 0.15s ease;
 }
 

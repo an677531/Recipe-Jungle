@@ -100,7 +100,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #6b6668;
+  color: var(--muted);
 }
 
 .recipe-detail-page__meta-value {
@@ -180,7 +180,7 @@
 .recipe-detail-page__not-found {
   font-family: var(--font-ui);
   font-size: 1rem;
-  color: #6b6668;
+  color: var(--muted);
   margin-bottom: var(--space-md);
 }
 

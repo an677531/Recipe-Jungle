@@ -10,13 +10,14 @@
 | #  | Phase                          | Status      |
 |----|--------------------------------|-------------|
 | 1  | Kickoff & Setup                | ✅ Complete |
-| 2  | Backend Setup (Supabase)       | ⬜ Next     |
-| 3  | Routing & Layout Shell         | ⬜ Pending  |
-| 4  | Recipe Display (Mock Data)     | ⬜ Pending  |
-| 5  | Visitor Preferences            | ⬜ Pending  |
-| 6  | Authentication (Supabase Auth) | ⬜ Pending  |
-| 7  | Recipe CRUD + Database         | ⬜ Pending  |
-| 8  | Polish & Accessibility         | ⬜ Pending  |
+| 2  | Backend Setup (Supabase)       | ✅ Complete |
+| 3  | Routing & Layout Shell         | ✅ Complete |
+| 4  | Recipe Display (Mock Data)     | ✅ Complete |
+| 5  | Visitor Preferences            | ✅ Complete |
+| 6  | Authentication (Supabase Auth) | ✅ Complete |
+| 7  | Recipe CRUD + Database         | ✅ Complete |
+| 8  | Polish & Accessibility         | ✅ Complete |
+| 9  | Filtering — Cuisine & Saved    | ✅ Complete |
 
 ---
 
@@ -145,7 +146,7 @@ Recipe {
 ### Preference options
 - Layout — grid / list toggle
 - Font size
-- Theme — light / dark *(if implemented)*
+- Color mode — Light / Dark / High Contrast (accessibility)
 
 ### Favorites
 - Visitors can heart / bookmark any recipe on the list or detail page
@@ -239,12 +240,33 @@ Recipe {
 
 ---
 
+---
+
+## Phase 9 — Filtering: Cuisine & Saved Recipes ✅
+
+> **Goal:** Let visitors narrow the recipe list without a full search.
+
+### Features added
+- [x] Cuisine pill buttons — auto-generated from unique `category` values in the database; no hardcoded list
+- [x] "♥ Saved" toggle button — shows only favorited recipes; friendly empty state if none saved
+- [x] All three filters (keyword search + cuisine + saved) compose simultaneously
+- [x] `aria-pressed` on all filter buttons for accessibility
+- [x] `aria-live` count fires whenever any filter is active
+- [x] Dark mode color overrides added for new pill/button elements
+
+### Files changed
+- `src/pages/RecipeList.jsx` — added `cuisine`, `favoritesOnly` state; `useMemo` cuisines list; updated filter logic; added filter bar JSX
+- `src/styles/RecipeList.css` — added `.recipe-list-page__filters`, `.recipe-list-page__cuisine-pills`, `.recipe-list-page__pill`, `.recipe-list-page__favorites-btn` styles
+- `src/styles/global.css` — added dark mode overrides for pill and favorites button text color
+
+---
+
 ## Notes for Next Session
 
 ```
-Current phase:  Phase 2 — Backend Setup (Supabase)
-Next step:      Create Supabase project, add .env credentials, install @supabase/supabase-js, create recipes table with RLS
-Blocker:        None — Supabase is the confirmed backend choice
+Current phase:  All phases complete
+Next step:      Production smoke test (Step 35) — verify live Vercel deployment end to end
+Blocker:        None
 Node version:   v18.20.8 (Vite pinned to v5 — upgrade to Node v20 when possible)
 Priority:       Working features over advanced architecture
 ```

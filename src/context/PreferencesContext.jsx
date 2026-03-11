@@ -9,6 +9,9 @@ export function PreferencesProvider({ children }) {
   const [fontSize, setFontSize] = useState(
     () => localStorage.getItem('pref_fontSize') ?? 'normal'
   )
+  const [colorMode, setColorMode] = useState(
+    () => localStorage.getItem('pref_colorMode') ?? 'light'
+  )
 
   useEffect(() => {
     localStorage.setItem('pref_layout', layout)
@@ -19,13 +22,19 @@ export function PreferencesProvider({ children }) {
     document.body.dataset.fontSize = fontSize
   }, [fontSize])
 
-  // Apply font size on first load
+  useEffect(() => {
+    localStorage.setItem('pref_colorMode', colorMode)
+    document.body.dataset.colorMode = colorMode
+  }, [colorMode])
+
+  // Apply all data attributes on first load
   useEffect(() => {
     document.body.dataset.fontSize = fontSize
+    document.body.dataset.colorMode = colorMode
   }, [])
 
   return (
-    <PreferencesContext.Provider value={{ layout, setLayout, fontSize, setFontSize }}>
+    <PreferencesContext.Provider value={{ layout, setLayout, fontSize, setFontSize, colorMode, setColorMode }}>
       {children}
     </PreferencesContext.Provider>
   )

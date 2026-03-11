@@ -54,7 +54,7 @@
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #6b6668;
+  color: var(--muted);
   padding: var(--space-sm) var(--space-md);
   border-bottom: 2px solid var(--vanilla-custard);
 }
@@ -113,7 +113,7 @@
 .dashboard-page__status {
   font-family: var(--font-ui);
   font-size: 1rem;
-  color: #6b6668;
+  color: var(--muted);
   text-align: center;
   padding-block: var(--space-xl);
 }

@@ -36,6 +36,71 @@
   border-color: var(--tomato-jam);
 }
 
+/* ─── Filter bar ────────────────────────────────────────────── */
+.recipe-list-page__filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.recipe-list-page__cuisine-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  flex: 1;
+}
+
+.recipe-list-page__pill {
+  font-family: var(--font-ui);
+  font-size: 0.825rem;
+  font-weight: 500;
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--tropical-teal);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--shadow-grey);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.recipe-list-page__pill:hover {
+  background-color: var(--vanilla-custard);
+}
+
+.recipe-list-page__pill--active {
+  background-color: var(--tropical-teal);
+  color: var(--shadow-grey);
+  border-color: var(--tropical-teal);
+  font-weight: 600;
+}
+
+.recipe-list-page__favorites-btn {
+  font-family: var(--font-ui);
+  font-size: 0.825rem;
+  font-weight: 500;
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--tomato-jam);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--tomato-jam);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.recipe-list-page__favorites-btn:hover {
+  background-color: var(--vanilla-custard);
+}
+
+.recipe-list-page__favorites-btn--active {
+  background-color: var(--tomato-jam);
+  color: #fff;
+  font-weight: 600;
+}
+
 /* ─── Grid ──────────────────────────────────────────────────── */
 .recipe-list-page__grid {
   display: grid;
@@ -66,7 +131,7 @@
 .recipe-list-page__status {
   font-family: var(--font-ui);
   font-size: 1rem;
-  color: #6b6668;
+  color: var(--muted);
   text-align: center;
   padding-block: var(--space-xl);
 }

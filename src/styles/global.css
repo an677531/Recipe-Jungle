@@ -24,6 +24,9 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
+
+  /* Muted text */
+  --muted: #6b6668;
 }
 
 /* ─── Reset ────────────────────────────────────────────────── */
@@ -105,4 +108,90 @@ main:focus {
 /* ─── Font size preference ─────────────────────────────────── */
 body[data-font-size='large'] {
   font-size: 1.125rem;
+}
+
+/* ─── Dark mode ─────────────────────────────────────────────── */
+body[data-color-mode='dark'] {
+  --linen:          #1a1a1a;
+  --shadow-grey:    #e8e3de;
+  --vanilla-custard:#2c2c2c;
+  --tropical-teal:  #5aa3a8;
+  --tomato-jam:     #d4614a;
+  --muted:          #a09899;
+  background-color: #1a1a1a;
+  color: #e8e3de;
+}
+
+body[data-color-mode='dark'] .recipe-card,
+body[data-color-mode='dark'] .login-page__card,
+body[data-color-mode='dark'] .recipe-form__section {
+  background-color: #2c2c2c;
+  color: #e8e3de;
+}
+
+body[data-color-mode='dark'] .dashboard-page__table tr:hover td {
+  background-color: #333333;
+}
+
+body[data-color-mode='dark'] .recipe-form-page__error,
+body[data-color-mode='dark'] .login-page__error {
+  background-color: #3a1a17;
+}
+
+body[data-color-mode='dark'] .recipe-form__input,
+body[data-color-mode='dark'] .recipe-form__select,
+body[data-color-mode='dark'] .recipe-form__textarea,
+body[data-color-mode='dark'] .login-page__input,
+body[data-color-mode='dark'] .recipe-list-page__search {
+  background-color: #3a3a3a;
+  color: #e8e3de;
+  border-color: #555;
+}
+
+body[data-color-mode='dark'] .prefs-panel {
+  background-color: #2c2c2c;
+  border-color: #444;
+  color: #e8e3de;
+}
+
+body[data-color-mode='dark'] .prefs-panel__label {
+  color: #e8e3de;
+}
+
+body[data-color-mode='dark'] .recipe-list-page__pill,
+body[data-color-mode='dark'] .recipe-list-page__favorites-btn {
+  color: #e8e3de;
+}
+
+/* ─── High contrast mode ────────────────────────────────────── */
+body[data-color-mode='high-contrast'] {
+  --linen:          #ffffff;
+  --shadow-grey:    #000000;
+  --vanilla-custard:#ffff00;
+  --tropical-teal:  #0000ff;
+  --tomato-jam:     #cc0000;
+  --muted:          #000000;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body[data-color-mode='high-contrast'] a,
+body[data-color-mode='high-contrast'] .header__link,
+body[data-color-mode='high-contrast'] .header__logo {
+  text-decoration: underline;
+}
+
+body[data-color-mode='high-contrast'] .recipe-card {
+  border: 2px solid #000000;
+}
+
+body[data-color-mode='high-contrast'] button,
+body[data-color-mode='high-contrast'] .landing__cta,
+body[data-color-mode='high-contrast'] .dashboard-page__add-btn {
+  border: 2px solid #000000;
+}
+
+body[data-color-mode='high-contrast'] *:focus {
+  outline: 3px solid #0000ff;
+  outline-offset: 2px;
 }
